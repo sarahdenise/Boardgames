@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.image {
+  height: 300px;
+}
+
+.thumbnail {
+  height: 150px;
+}
