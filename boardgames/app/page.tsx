@@ -13,6 +13,8 @@ export default function Home() {
 
   const [boardgamesArray, setBoardgamesArray] = useState<any[]>([])
   
+  const [boardgamesHotIncArray, setBoardgamesHotIncArray] = useState<any[]>([])
+  const [boardgamesHotIdArray, setBoardgamesHotIdArray] = useState<any[]>([])
 
 
   const getBoardgamesObj = (x: any) => {
@@ -35,6 +37,37 @@ export default function Home() {
     
     
   }, [])
+
+  const getHotboardgames = () => {
+    const options = {method: 'GET', headers: {accept: 'application/xml'}};
+    fetch(`https://boardgamegeek.com/xmlapi2/hot?boardgame`, options)
+    .then((response) => response.text())
+    .then((response: any) => getBoardgamesObj(response))
+    // .then(data => console.log(data))
+    // .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+    // .then(data => console.log(data))
+    // .then((response: any) => getBoardgamesObj(response))
+    // .then(data => console.log("data", data))
+    // .then((data: any) => setBoardgamesHotIncArray(data.items.item))
+    .then((data: any) => data.items.item.map((boardgame: any) => boardgame['@_id']))
+    // .then(array => setBoardgamesHotIdArray(array))
+    .then(array => {
+      const options = {method: 'GET', headers: {accept: 'application/xml'}};
+      fetch(`https://boardgamegeek.com/xmlapi/boardgame/${array.map((id) => id)}`, options)
+        .then(response => console.log(response))
+    })
+  }
+  // getting CORS is missing issue
+
+  useEffect(() => {
+    // console.log(boardgamesArray)
+    console.log(boardgamesHotIncArray)
+  }, [boardgamesHotIncArray])
+
+  useEffect(() => {
+    console.log(boardgamesHotIdArray)
+    
+  }, [boardgamesHotIdArray])
 
   
 
