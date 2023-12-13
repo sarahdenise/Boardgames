@@ -7,8 +7,6 @@ import { XMLParser } from 'fast-xml-parser';
 
 const collectionXml = require('./collection.xml')
 
-const noImg = 'noImg.webp'
-
 import Card from './ui/Card'
 import Filter from './ui/Filter';
 
@@ -147,8 +145,9 @@ export default function Home() {
 
   return (
     <div className="bg-stone-900">
+      
       <div className='hero p-6'>
-        <h1 className='hero-content text-4xl text-zinc-50 font-bold'>What shall we play today?</h1>
+        <h1 className='hero-content text-4xl text-zinc-50 font-bold'>Boardgame Collection</h1>
       </div>
       <div className='grid grid-cols-8 p-6'>
         <div className='col-span-2 px-4 py-8 max-h-[90vh] overflow-y-auto'>
