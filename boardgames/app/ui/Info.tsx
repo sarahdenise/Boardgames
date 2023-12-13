@@ -46,10 +46,10 @@ const Info = ({id}: { id: string}) => {
             
             <div className="relative transform overflow-hidden rounded-lg bg-stone-800 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-6xl sm:p-6 place-content-center">
                 <div className="place-content-center grid grid-cols-4">
-                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-900 xl:aspect-h-8 xl:aspect-w-7 max-w-xs place-content-center col-span-1">
-                        <img className="" src={boardgame.image || noImg}  alt={Array.isArray(boardgame.name) ? String((boardgame.name.find((name: any) => name['@_type'] === "primary"))['@_value']) : boardgame.name['@_value']} />
+                    <div className="mt-4 sm:mt-5 aspect-h-1 aspect-w-1 w-full overflow-hidden bg-stone-800 xl:aspect-h-8 xl:aspect-w-7 max-w-xs place-content-center col-span-1">
+                        <img className="rounded-lg" src={boardgame.image || noImg}  alt={Array.isArray(boardgame.name) ? String((boardgame.name.find((name: any) => name['@_type'] === "primary"))['@_value']) : boardgame.name['@_value']} />
                     </div>
-                    <div className="mt-3 sm:mt-5 col-span-3 pl-6">
+                    <div className="mt-2 sm:mt-3 col-span-3 pl-6">
                         <h3 className="text-base font-semibold leading-6 text-white" id="modal-title">
                             {Array.isArray(boardgame.name) ? String((boardgame.name.find((name: any) => name['@_type'] === "primary"))['@_value']) : boardgame.name['@_value']}
                         </h3>
@@ -67,7 +67,7 @@ const Info = ({id}: { id: string}) => {
                     </div>
                 </div>
                 <div className="mt-5 sm:mt-6">
-                    <button type="button" className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => router.back()}>Go back to dashboard</button>
+                    <button type="button" className="inline-flex w-full justify-center rounded-md bg-rose-300 px-3 py-2 text-sm font-semibold text-stone-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => router.back()}>Go back to dashboard</button>
                 </div>
             </div>
             
