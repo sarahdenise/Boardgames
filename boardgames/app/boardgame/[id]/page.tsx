@@ -1,13 +1,62 @@
-"use client";
+
 
 // import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import Info from "@/app/ui/Info"
 
 
-const Boardgame = ({ params }: { params: {id: string}}) => {
+
+import { XMLParser } from 'fast-xml-parser';
+const collectionXml = require('../../collection.xml')
+
+
+// Return a list of `params` to populate the [slug] dynamic segment
+// https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+export async function generateStaticParams() {
+
+    let boardgamesArray = [{"@_objectid": "1293"}]
+
+    const getBoardgamesObj = (x: any) => {
+
+        const options = {
+          ignoreAttributes : false
+        }
     
-    const [id, setId] = useState(params["id"])
+        const parser = new XMLParser(options);
+        let jObj = parser.parse(x);
+        // console.log(jObj.boardgames.boardgame)
+        return jObj
+      }
+
+    const a = getBoardgamesObj(collectionXml.default)
+    const b = a.boardgames.boardgame
+    const c = b.map((boardgame: any) => {
+      if (Array.isArray(boardgame.boardgamecategory)) {
+        const catArray = boardgame.boardgamecategory.map((category: any) => category["#text"])
+        boardgame.category = catArray
+        return boardgame
+      }
+      else {
+        const catArray = [boardgame.boardgamecategory["#text"]]
+        boardgame.category = catArray
+        return boardgame
+      }
+    })
+    boardgamesArray = c
+
+    console.log(boardgamesArray)
+   
+    return boardgamesArray.map((boardgame: any) => ({
+      "id": boardgame["@_objectid"],
+    }))
+  }
+
+
+
+
+const Boardgame = ({ params }: { params: {id: string}}) => {
+    const id = params["id"]
+    // const [id, setId] = useState(params["id"])
     // useEffect(() => {
     //     console.log(id)
     // }, [])
