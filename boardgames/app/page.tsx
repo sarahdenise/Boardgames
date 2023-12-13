@@ -11,7 +11,6 @@ import Card from './ui/Card'
 import Filter from './ui/Filter';
 
 
-
 export default function Home() {
 
   const [boardgamesArray, setBoardgamesArray] = useState<any[]>([])
